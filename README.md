@@ -13,6 +13,10 @@
 ## Description
 A plugin to change the player's capes
 
+## Features
+- Change cape by url, image
+- Easy to use and config
+
 ## How to Install
 
 1. Download the latest version
