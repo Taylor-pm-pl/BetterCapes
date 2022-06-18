@@ -71,4 +71,3 @@ class DownloadFile extends AsyncTask {
 		}
 	}
 }
-?>

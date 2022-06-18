@@ -47,4 +47,3 @@ class Main extends PluginBase {
 		$this->getServer()->getCommandMap()->register(MessageUtils::getMessage('command'), new Capes($this));
 	}
 }
-?>

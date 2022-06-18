@@ -42,4 +42,3 @@ final class MessageUtils {
 		return TextFormat::colorize($msg);
 	}
 }
-?>

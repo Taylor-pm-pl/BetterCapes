@@ -46,10 +46,6 @@ final class CapeUtils {
 	 * @return void
 	 */
 	public static function setCape(Player $player, GdImage $image) : void {
-		if (is_null($image)) {
-			$player->sendMessage(MessageUtils::getMessage('invalid-cape'));
-			return;
-		}
 		$rgba = "";
 		for ($y = 0; $y < imagesy($image); $y++) {
 			for ($x = 0; $x < imagesx($image); $x++) {
@@ -68,4 +64,3 @@ final class CapeUtils {
 		$player->sendMessage(MessageUtils::getMessage('change-success'));
 	}
 }
-?>

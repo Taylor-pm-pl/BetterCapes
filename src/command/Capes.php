@@ -68,9 +68,9 @@ class Capes extends Command implements PluginOwned {
 	 * @param string $commandLabel
 	 * @param array $args
 	 * 
-	 * @return [type]
+	 * @return void
 	 */
-	public function execute(CommandSender $sender, string $commandLabel, array $args) {
+	public function execute(CommandSender $sender, string $commandLabel, array $args): void {
 		if ($sender instanceof Player) {
 			if (!isset($args[0])) {
 				$sender->sendMessage(MessageUtils::getMessage('usage'));
@@ -97,4 +97,3 @@ class Capes extends Command implements PluginOwned {
 		}
 	}
 }
-?>
