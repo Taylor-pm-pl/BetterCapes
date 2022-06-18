@@ -1,0 +1,12 @@
+name: BetterCapes
+version: 0.0.1
+api: 4.0.0
+main: DavidGlitch04\BetterCapes\Main
+src-namespace-prefix: DavidGlitch04\BetterCapes
+author: DavidGlitch04
+description: A plugin to change the player's capes
+
+permissions:
+  capes.command.allow:
+    description: 'Allow player to use bettercapes'
+    default: op
