@@ -53,7 +53,7 @@ class Capes extends Command implements PluginOwned {
 		$this->plugin = $plugin;
 		parent::__construct(MessageUtils::getMessage('command'));
 		$this->setDescription(MessageUtils::getMessage('description'));
-		$this->setPermission('capes.command.allow');
+		$this->setPermission('bettercapes.command.allow');
 	}
 
 	/**
