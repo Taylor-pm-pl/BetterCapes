@@ -6,6 +6,7 @@
 # ██████╦╝███████╗░░░██║░░░░░░██║░░░███████╗██║░░██║╚█████╔╝██║░░██║██║░░░░░███████╗██████╔╝
 # ╚═════╝░╚══════╝░░░╚═╝░░░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝╚═╝░░░░░╚══════╝╚═════╝░
 # Here is the command and its description
+# Default permission is bettercapes.command.allow
 command: 'bettercapes'
 description: 'BetterCapes command'
 # Messages when changing capes
