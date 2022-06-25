@@ -7,6 +7,6 @@ author: DavidGlitch04
 description: A plugin to change the player's capes
 
 permissions:
-  capes.command.allow:
+  bettercapes.command.allow:
     description: 'Allow player to use bettercapes'
     default: op
