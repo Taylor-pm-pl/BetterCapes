@@ -15,6 +15,7 @@ A plugin to change the player's capes
 
 ## Features
 - Change cape by url, image
+- Permission to use default, link cape
 - Easy to use and config
 
 ## How to Install
