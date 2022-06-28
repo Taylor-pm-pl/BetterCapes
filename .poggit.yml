@@ -5,5 +5,5 @@ branches:
 projects:
   BetterCapes:
     path: ""
-    icon: icon.png
+    icon: "assets/images/icon.png"
 ...
