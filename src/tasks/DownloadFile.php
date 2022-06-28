@@ -24,6 +24,7 @@ declare(strict_types=1);
 namespace DavidGlitch04\BetterCapes\tasks;
 
 use DavidGlitch04\BetterCapes\utils\CapeUtils;
+use Exception;
 use GdImage;
 use pocketmine\player\Player;
 use pocketmine\scheduler\AsyncTask;
@@ -65,9 +66,13 @@ class DownloadFile extends AsyncTask {
 	 */
 	public function onCompletion() : void {
 		$image = imagecreatefromstring($this->getResult());
-		$player = Server::getInstance()->getPlayerExact($this->playername);
-		if ($image instanceof GdImage and $player instanceof Player) {
-			CapeUtils::setCape($player, $image);
+		try{
+			$player = Server::getInstance()->getPlayerExact($this->playername);
+			if ($image instanceof GdImage and $player instanceof Player) {
+				CapeUtils::setCape($player, $image);
+			}
+		} catch (Exception $e){
+			$this->plugin->getLogger()->warning($e->getMessage());
 		}
 	}
 }

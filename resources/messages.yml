@@ -9,8 +9,11 @@
 # Default permission is bettercapes.command.allow
 command: 'bettercapes'
 description: 'BetterCapes command'
+default-cape-perm: 'bettercapes.{capename}.allow'
+link-cape-perm: 'bettercapes.link.allow'
 # Messages when changing capes
 usage: 'Usages: /bettercapes <url/filename>'
 invalid-cape: 'Invalid cape'
 invalid-link: 'Invalid link'
+error: 'Default Cape has an error'
 change-success: 'Change cape successfully!'

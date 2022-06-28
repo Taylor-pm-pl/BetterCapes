@@ -27,12 +27,15 @@ use DavidGlitch04\BetterCapes\Main;
 use DavidGlitch04\BetterCapes\tasks\DownloadFile;
 use DavidGlitch04\BetterCapes\utils\CapeUtils;
 use DavidGlitch04\BetterCapes\utils\MessageUtils;
+use Exception;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
 use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginOwned;
 use pocketmine\Server;
+use pocketmine\utils\TextFormat;
+
 use function file_exists;
 use function filter_var;
 use function imagecreatefrompng;
@@ -76,24 +79,52 @@ class Capes extends Command implements PluginOwned {
 				$sender->sendMessage(MessageUtils::getMessage('usage'));
 				return;
 			}
+			# If the parameter is a link
 			if (filter_var($args[0], FILTER_VALIDATE_URL)) {
+				# Check Permission to use cape link
+				if(!$sender->hasPermission(Main::$messages->get('link-cape-perm')) && !$this->isOp($sender)){
+					$sender->sendMessage(TextFormat::RED . "You don't have permission to use this command!");
+					return;
+				}
 				$extension = substr($args[0], -4);
 				if ($extension === ".png") {
 					Server::getInstance()->getAsyncPool()->submitTask(new DownloadFile($sender->getName(), $args[0]));
 				} else {
 					$sender->sendMessage(MessageUtils::getMessage('invalid-link'));
 				}
-			} else {
-				$path = $this->getOwningPlugin()->getDataFolder() . $args[0] . ".png";
+			} elseif(!$this->testCapePermission($sender, $args[0]) && !$this->isOp($sender)){ # Check permission of default cape
+				$sender->sendMessage(TextFormat::RED . "You don't have permission to use this command!");
+				return;
+			}
+			# Player has permission
+			try{
+				$path = $this->plugin->getDataFolder() . $args[0] . ".png";
 				if (!file_exists($path)) {
 					$sender->sendMessage(MessageUtils::getMessage('invalid-cape'));
 					return;
 				}
 				$image = imagecreatefrompng($path);
 				CapeUtils::setCape($sender, $image);
+			} catch (Exception $e){
+				$sender->sendMessage(MessageUtils::getMessage('error'));
+				$this->plugin->getLogger()->warning($e->getMessage());
 			}
+			return;
 		} else {
 			$sender->sendMessage('Please use this command in-game');
 		}
+	}
+
+	public function isOp(Player $player): bool{
+		return Server::getInstance()->isOp($player->getName());
+	}
+
+	public function testCapePermission(Player $player, string $capeName): bool{
+		$permission = str_replace(
+			'{capename}', 
+			$capeName, 
+			Main::$messages->get('default-cape-perm')
+		);
+		return $player->hasPermission($permission);
 	}
 }
