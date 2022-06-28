@@ -72,7 +72,7 @@ class DownloadFile extends AsyncTask {
 				CapeUtils::setCape($player, $image);
 			}
 		} catch (Exception $e){
-			$this->plugin->getLogger()->warning($e->getMessage());
+			Server::getInstance()->getLogger()->warning('[BetterCapes]: '.$e->getMessage());
 		}
 	}
 }
