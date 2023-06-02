@@ -14,7 +14,7 @@
  * (at your option) any later version.
  *
  * @author DavidGlitch04
- * @link https://github.com/DavidGlitch04/BetterCapes
+ * @link https://github.com/Taylor-pm-pl/BetterCapes
  *
  *
 */
@@ -30,7 +30,6 @@ use function chr;
 use function imagecolorat;
 use function imagesx;
 use function imagesy;
-use function is_null;
 use function strlen;
 
 /**
@@ -39,12 +38,13 @@ use function strlen;
  */
 final class CapeUtils {
 
-	/**
-	 * @param Player $player
-	 * @param GdImage $image
-	 * 
-	 * @return void
-	 */
+    /**
+     * @param Player $player
+     * @param GdImage $image
+     *
+     * @return void
+     * @throws \JsonException
+     */
 	public static function setCape(Player $player, GdImage $image) : void {
 		$rgba = "";
 		for ($y = 0; $y < imagesy($image); $y++) {

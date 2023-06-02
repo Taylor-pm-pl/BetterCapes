@@ -14,7 +14,7 @@
  * (at your option) any later version.
  *
  * @author DavidGlitch04
- * @link https://github.com/DavidGlitch04/BetterCapes
+ * @link https://github.com/Taylor-pm-pl/BetterCapes
  *
  *
 */

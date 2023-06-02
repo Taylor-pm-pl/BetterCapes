@@ -14,7 +14,7 @@
  * (at your option) any later version.
  *
  * @author DavidGlitch04
- * @link https://github.com/DavidGlitch04/BetterCapes
+ * @link https://github.com/Taylor-pm-pl/BetterCapes
  *
  *
 */
@@ -79,9 +79,7 @@ class Capes extends Command implements PluginOwned {
 				$sender->sendMessage(MessageUtils::getMessage('usage'));
 				return;
 			}
-			# If the parameter is a link
 			if (filter_var($args[0], FILTER_VALIDATE_URL)) {
-				# Check Permission to use cape link
 				if(!$sender->hasPermission(Main::$messages->get('link-cape-perm')) && !$this->isOp($sender)){
 					$sender->sendMessage(TextFormat::RED . "You don't have permission to use this command!");
 					return;
@@ -92,24 +90,22 @@ class Capes extends Command implements PluginOwned {
 				} else {
 					$sender->sendMessage(MessageUtils::getMessage('invalid-link'));
 				}
-			} elseif(!$this->testCapePermission($sender, $args[0]) && !$this->isOp($sender)){ # Check permission of default cape
+			} elseif(!$this->testCapePermission($sender, $args[0]) && !$this->isOp($sender)){
 				$sender->sendMessage(TextFormat::RED . "You don't have permission to use this command!");
-				return;
-			}
-			# Player has permission
-			try{
-				$path = $this->plugin->getDataFolder() . $args[0] . ".png";
-				if (!file_exists($path)) {
-					$sender->sendMessage(MessageUtils::getMessage('invalid-cape'));
-					return;
-				}
-				$image = imagecreatefrompng($path);
-				CapeUtils::setCape($sender, $image);
-			} catch (Exception $e){
-				$sender->sendMessage(MessageUtils::getMessage('error'));
-				$this->plugin->getLogger()->warning($e->getMessage());
-			}
-			return;
+			} else {
+                try{
+                    $path = $this->plugin->getDataFolder() . $args[0] . ".png";
+                    if (!file_exists($path)) {
+                        $sender->sendMessage(MessageUtils::getMessage('invalid-cape'));
+                        return;
+                    }
+                    $image = imagecreatefrompng($path);
+                    CapeUtils::setCape($sender, $image);
+                } catch (Exception $e){
+                    $sender->sendMessage(MessageUtils::getMessage('error'));
+                    $this->plugin->getLogger()->warning($e->getMessage());
+                }
+            }
 		} else {
 			$sender->sendMessage('Please use this command in-game');
 		}

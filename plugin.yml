@@ -1,6 +1,6 @@
 name: BetterCapes
-version: 0.0.2
-api: 4.0.0
+version: 0.0.3
+api: 5.0.0
 main: DavidGlitch04\BetterCapes\Main
 src-namespace-prefix: DavidGlitch04\BetterCapes
 author: DavidGlitch04

@@ -37,19 +37,15 @@ use function imagecreatefromstring;
  * @package DavidGlitch04\BetterCapes\tasks
  */
 class DownloadFile extends AsyncTask {
-    /** @var string $playername */
-	public string $playername;
-    /** @var string $url */
-	public string $url;
 
 	/**
 	 * @param string $playername
 	 * @param string $url
 	 */
-	public function __construct(string $playername, string $url) {
-		$this->playername = $playername;
-		$this->url = $url;
-	}
+	public function __construct(
+        private string $playername,
+        private string $url
+    ) {}
 
 
 	/**
@@ -67,7 +63,7 @@ class DownloadFile extends AsyncTask {
 	public function onCompletion() : void {
 		$image = imagecreatefromstring($this->getResult());
 		try{
-			$player = Server::getInstance()->getPlayerExact($this->playername);
+			$player = Server::getInstance()->getPlayerByPrefix($this->playername);
 			if ($image instanceof GdImage and $player instanceof Player) {
 				CapeUtils::setCape($player, $image);
 			}
