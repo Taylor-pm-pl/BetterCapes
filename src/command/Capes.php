@@ -80,7 +80,7 @@ class Capes extends Command implements PluginOwned {
 				return;
 			}
 			if (filter_var($args[0], FILTER_VALIDATE_URL)) {
-				if(!$sender->hasPermission(Main::$messages->get('link-cape-perm')) && !$this->isOp($sender)){
+				if(!$sender->hasPermission(Main::$messages->get('link-cape-perm')) || !$this->isOp($sender)){
 					$sender->sendMessage(TextFormat::RED . "You don't have permission to use this command!");
 					return;
 				}
